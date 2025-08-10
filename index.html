@@ -1,137 +1,37 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pembuat dan Pemecah Sandi Fibonacci</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: rgba(0,0,0,0.6);
-            padding: 2rem;
-            border-radius: 12px;
-            width: 350px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        label {
-            display: block;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 0.5rem;
-            margin-top: 0.3rem;
-            border-radius: 6px;
-            border: none;
-            font-size: 1rem;
-        }
-        button {
-            margin-top: 1rem;
-            width: 100%;
-            padding: 0.7rem;
-            background-color: #764ba2;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #5a3680;
-        }
-        .result {
-            margin-top: 1rem;
-            background-color: #4a3c6f;
-            padding: 1rem;
-            border-radius: 6px;
-            min-height: 40px;
-            word-wrap: break-word;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pembuat & Pemecah Sandi Fibonacci</title>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- CSS -->
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>PEMBUAT & PEMECAH SANDI</h1>
+<div id="particles-js"></div>
 
-        <label for="inputBuat">Masukkan kata sandi untuk dibuat:</label>
-        <input type="text" id="inputBuat" placeholder="Kata sandi asli" />
+<div class="container animate__animated animate__fadeInUp">
+    <h1>🔐 PEMBUAT & PEMECAH SANDI</h1>
 
-        <button id="btnBuat">Buat Sandi</button>
-        <div id="hasilBuat" class="result"></div>
+    <label for="inputBuat">Masukkan kata sandi untuk dibuat:</label>
+    <input type="text" id="inputBuat" placeholder="Kata sandi asli" />
 
-        <label for="inputPecah">Masukkan kata sandi untuk dipecah:</label>
-        <input type="text" id="inputPecah" placeholder="Kata sandi terenkripsi" />
+    <button id="btnBuat">Buat Sandi</button>
+    <div id="hasilBuat" class="result"></div>
 
-        <button id="btnPecah">Pecah Sandi</button>
-        <div id="hasilPecah" class="result"></div>
-    </div>
+    <label for="inputPecah">Masukkan kata sandi untuk dipecah:</label>
+    <input type="text" id="inputPecah" placeholder="Kata sandi terenkripsi" />
 
-    <script>
-        function fibonacci(n) {
-            let a = 0, b = 1;
-            for (let i = 0; i < n; i++) {
-                let temp = b;
-                b = a + b;
-                a = temp;
-            }
-            return a;
-        }
+    <button id="btnPecah">Pecah Sandi</button>
+    <div id="hasilPecah" class="result"></div>
+</div>
 
-        function buatSandi(input) {
-            let result = '';
-            for (let i = 0; i < input.length; i++) {
-                let shift = fibonacci(i);
-                let c = input.charCodeAt(i) + shift;
-                result += String.fromCharCode(c);
-            }
-            return result;
-        }
-
-        function pecahSandi(input) {
-            let result = '';
-            for (let i = 0; i < input.length; i++) {
-                let shift = fibonacci(i);
-                let c = input.charCodeAt(i) - shift;
-                result += String.fromCharCode(c);
-            }
-            return result;
-        }
-
-        document.getElementById('btnBuat').addEventListener('click', () => {
-            const input = document.getElementById('inputBuat').value;
-            if (input.length === 0) {
-                alert('Masukkan kata sandi asli terlebih dahulu.');
-                return;
-            }
-            const sandiBaru = buatSandi(input);
-            document.getElementById('hasilBuat').textContent = sandiBaru;
-        });
-
-        document.getElementById('btnPecah').addEventListener('click', () => {
-            const input = document.getElementById('inputPecah').value;
-            if (input.length === 0) {
-                alert('Masukkan kata sandi terenkripsi terlebih dahulu.');
-                return;
-            }
-            const sandiAsli = pecahSandi(input);
-            document.getElementById('hasilPecah').textContent = sandiAsli;
-        });
-    </script>
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<!-- JS -->
+<script src="script.js"></script>
 </body>
 </html>
